@@ -3,39 +3,34 @@ import { Card, CardContent } from '@mui/material';
 import Constants from '../../Utils/constants';
 
 const DoubleCards = ({
-    title,
-    description,
+    picked = [],
 }) => {
+
     return (
         <div
         style={{
             display: "flex",
-            justifyContent: 'center'
+            justifyContent: 'center',
         }}
         >
-            <Card sx={{
+            {picked.length !== 0 && picked.map((item, index) => {
+            <Card 
+            sx={{
                 backgroundColor: Constants.CARD_BACKGROUND_COLOR
-            }}>
+            }} 
+            key={index}
+            >
                 <CardContent>
-                    {title}
-                    {description}
+                    <img src={item.image} alt="img" />
                 </CardContent>
             </Card>
-            <Card sx={{
-                backgroundColor: Constants.CARD_BACKGROUND_COLOR
-            }}>
-                <CardContent>
-                    {title}
-                    {description}
-                </CardContent>
-            </Card>
+            })}
         </div>
     )
 }
 
 DoubleCards.propTypes = {
-    title: PropTypes.string,
-    description: PropTypes.string
+    picked: PropTypes.array,
 }
 
 export default DoubleCards
