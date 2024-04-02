@@ -7,9 +7,13 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
+      <Footer>
+        <ButtonAppBar>
+          <Routes>
+            <Route path="/" element={<Home />} />
+          </Routes>
+        </ButtonAppBar>
+      </Footer>
     </BrowserRouter>
   </React.StrictMode>,
 )
