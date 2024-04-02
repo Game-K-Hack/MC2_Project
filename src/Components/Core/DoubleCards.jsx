@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { Card, CardContent } from '@mui/material';
+import Constants from '../../Utils/constants';
 
 const DoubleCards = ({
     title,
@@ -13,7 +14,7 @@ const DoubleCards = ({
         }}
         >
             <Card sx={{
-                backgroundColor: "rgba(66, 69, 72)"
+                backgroundColor: Constants.CARD_BACKGROUND_COLOR
             }}>
                 <CardContent>
                     {title}
@@ -21,7 +22,7 @@ const DoubleCards = ({
                 </CardContent>
             </Card>
             <Card sx={{
-                backgroundColor: "rgba(66, 69, 72)"
+                backgroundColor: Constants.CARD_BACKGROUND_COLOR
             }}>
                 <CardContent>
                     {title}
