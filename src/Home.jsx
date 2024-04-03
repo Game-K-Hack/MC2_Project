@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import './home.css'
-import logo from './assets/theme.png'
 import DoubleCards from './Components/Core/DoubleCards'
 import { Button, Typography } from '@mui/material'
 import Constants from './Utils/constants'
@@ -17,7 +16,6 @@ function Home() {
   useEffect(() => {
     const getList = async () => {
       const response = await axios.get("http://127.0.0.1:5432/proxy?url=" + url);
-      console.log("OKKKKKKK!")
       setList(response.data.content)
     }
     if (url != "") {
@@ -33,8 +31,10 @@ function Home() {
 
       <Typography variant='h2' sx={{
         color: "white",
-        fontSize: "4em"
-      }}>Choisisser un thème</Typography>
+        fontSize: "4em", 
+        marginTop: "50px",
+        fontFamily: "LeoRoundedBold"
+      }}>choisisser un theme</Typography>
 
       <div className="container">
 
