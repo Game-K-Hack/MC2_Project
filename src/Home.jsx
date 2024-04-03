@@ -1,13 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import './home.css'
 import DoubleCards from './Components/Core/DoubleCards'
 import { Button, Typography } from '@mui/material'
 import Constants from './Utils/constants'
 import axios from 'axios'
 import usePickedList from './Hooks/usePickedList'
+import target from './assets/target40.png'
 
 function Home() {
-  const [url, setUrl] = useState("")
+  const [url, setUrl] = useState("translateZ(-25px) rotateX(-720deg)")
 
   const [list, setList] = useState([])
 
@@ -23,7 +24,10 @@ function Home() {
     }
   }, [url])
 
-  const handleClick = (theme) => setUrl(theme)
+  const handleClick = (theme, id) => {
+    document.getElementById(id).style.transform = "translateZ(-25px) rotateX(-720deg)";
+    setTimeout(() => {setUrl(theme)}, 50);
+  }
 
   return (
     <>
@@ -40,13 +44,18 @@ function Home() {
 
         {Constants.LIST_THEME.map((item, index) => {
           return (
-            <Button key={index} variant="contained"
+            <Button id={index} key={index}
+              variant="contained"
               startIcon={<img src={item.icon} width={25} />}
               sx={{
                 backgroundColor: "#7289da",
-                margin: 5
+                margin: 4,
+                transition: "transform 1s ease .1s",
+                '&:hover': {
+                  cursor: "url(" + target + ") 20 20, auto"
+                }
               }} onClick={() => {
-                handleClick(item.url)
+                handleClick(item.url, index)
               }}>
               {item.name} <i><b style={{ marginLeft: 15 }}>{item.length}</b></i>
             </Button>
