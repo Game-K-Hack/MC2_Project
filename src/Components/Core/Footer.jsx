@@ -12,23 +12,65 @@ export default function Footer({ children }) {
   return (
     <>
       {children}
-      <Box sx={{ background: CONSTANTES.HEADER_BACKGROUND_COLOR, bottom: 0,position: 'fixed', width: '1280px',  color: "white", borderTopLeftRadius: CONSTANTES.BORDER_RADIUS,borderTopRightRadius: CONSTANTES.BORDER_RADIUS, mt: 'auto', mt:'auto', height: '80px' }}>
-        <Container maxWidth="sm">
-        <Grid container  alignItems="flex-start" justifyContent="space-between" >
-            <Grid >
-                <Typography variant="body1">
-                <Link href="/privacy-policy" color="inherit">Privacy Policy</Link> • 
-                    <Link href="/terms-of-service" color="inherit">Terms of Service</Link>
+      <Box
+        sx={{
+          background: CONSTANTES.HEADER_BACKGROUND_COLOR,
+          bottom: 0,
+          position: "fixed",
+          width: "1280px",
+          color: "white",
+          borderTopLeftRadius: CONSTANTES.BORDER_RADIUS,
+          borderTopRightRadius: CONSTANTES.BORDER_RADIUS,
+          mt: "auto",
+          height: "70px",
+        }}
+      >
+        <Container maxWidth="lg">
+          <Grid borderTop={5} solid margin={1} borderRadius={16}>
+
+          </Grid>
+          <Grid
+            container
+            direction="row"
+            alignItems="center"
+            justifyContent="space-between"
+          >
+            <Grid item xs={4} >
+              <Typography
+                variant="body1"
+                fontSize={14} style={{ textDecoration: "none" }}
+              >
+                <Link href="/privacy-policy" color="inherit" style={{ textDecoration: "none" }}>
+                  Privacy Policy
+                </Link>{" "}
+                • 
+                <Link href="/terms-of-service" color="inherit" style={{ textDecoration: "none" }}>
+                  Terms of Service
+                </Link>
+                <br></br>
+                <Typography sx={{ fontStyle: "oblique", fontSize: 12 }}>
+                  Copyright © {new Date().getFullYear()}
                 </Typography>
-                <Typography variant="body1">Copyright © {CONSTANTES.NAME_APP} 2024</Typography>
+              </Typography>
             </Grid>
-            <Grid sx={{}}>
-                <Link href="https://github.com/Game-K-Hack/MC2_Project" target="_blank"  rel="noopener noreferrer"
-            >
+            <Grid item xs={4}>
+              <Typography  variant="h10" style={{ textDecoration: 'underline' }}>
+                Tu préfères ?
+              </Typography>
+              <Typography variant="body1">
+                React | Material UI | React Router
+              </Typography>
+            </Grid>
+            <Grid item xs={4}>
+              <Link
+                href="https://github.com/Game-K-Hack/MC2_Project"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <GitHubIcon sx={{ color: "white" }} />
-            </Link>
+              </Link>
             </Grid>
-        </Grid>
+          </Grid>
         </Container>
       </Box>
       

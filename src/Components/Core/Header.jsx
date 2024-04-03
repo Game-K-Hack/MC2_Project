@@ -29,7 +29,7 @@ export default function ButtonAppBar({
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             {CONSTANTES.NAME_APP}
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Button color="inherit">Statistiques</Button>
         </Toolbar>
       </AppBar>
     </Box>
