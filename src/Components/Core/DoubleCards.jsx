@@ -6,6 +6,8 @@ const DoubleCards = ({
     picked = [],
 }) => {
 
+    console.log("DC:", picked);
+
     return (
         <div
         style={{
