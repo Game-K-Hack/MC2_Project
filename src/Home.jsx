@@ -26,6 +26,13 @@ function Home() {
 
   const handleClick = (theme, id) => {
     document.getElementById(id).style.transform = "translateZ(-25px) rotateX(-720deg)";
+    
+    setTimeout(() => { // reset animation after 1.1s
+      document.getElementById(id).style.transition = "transform 0s";
+      document.getElementById(id).style.transform = "translateZ(-25px) rotateX(0deg)";
+      setTimeout(() => {document.getElementById(id).style.transition = "transform 1s ease .1s";}, 50);
+    }, 1100);
+
     setTimeout(() => {setUrl(theme)}, 50);
   }
 
