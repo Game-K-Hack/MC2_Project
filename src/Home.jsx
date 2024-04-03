@@ -1,25 +1,73 @@
 import { useEffect, useState } from 'react'
-import './App.css'
-import DoubleCards from './Components/Core/DoubleCards'
-// import usePickedList from './Hooks/usePickedList';
-import axios from 'axios';
+import './home.css'
+import logo from './assets/theme.png'
+// import DoubleCards from './Components/Core/DoubleCards'
+import { Button, Typography } from '@mui/material'
+import Constants from './Utils/constants'
+import axios from 'axios'
 
 function Home() {
-  // const [count, setCount] = useState();
-  // const picked = usePickedList(list);
+  const [count, setCount] = useState()
+
+  const [list, setList] = useState([])
 
   useEffect(() => {
     const getList = async () => {
-      const request = await axios.get("https://tiermaker.com/api/?type=templates-v2&id=top-bire-80-industriel-and-artisanal-1081944");
-      console.log(request);
+      const response = await axios.get("http://127.0.0.1:5432/proxy?url=" + Constants.LIST_THEME[0]["url"]);
+      // setList(response.data?.content);
+      // console.log(list);
+      console.log(Array.isArray(response.data.content));
+      setList(response.data.content)
     }
-
-    getList()
+    getList();
   }, [])
-  
+
+  useEffect(() => {
+    console.log("LIST : ", list);
+  }, [list])
+
+
   return (
     <>
-      <DoubleCards/>
+      {/* <DoubleCards /> */}
+      <Typography variant='h2' sx={{
+        color: "white",
+        fontSize: "4em"
+      }}>Choisisser un thème</Typography>
+
+      {list.length > 0 && list.map((item, index) => (
+        <div key={index}>
+          {item.id}
+          {item.url}
+        </div>
+      ))}
+
+      <div className="container">
+        <Button variant="contained"
+          startIcon={<img src={logo} width={25} />}
+          sx={{
+            backgroundColor: "#7289da",
+            margin: 5
+          }}>
+          Theme
+        </Button>
+        <Button variant="contained"
+          startIcon={<img src={logo} width={25} />}
+          sx={{
+            backgroundColor: "#7289da",
+            margin: 5
+          }}>
+          Theme
+        </Button>
+        <Button variant="contained"
+          startIcon={<img src={logo} width={25} />}
+          sx={{
+            backgroundColor: "#7289da",
+            margin: 5
+          }}>
+          Theme
+        </Button>
+      </div>
     </>
   )
 }
