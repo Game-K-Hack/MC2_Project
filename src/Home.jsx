@@ -8,8 +8,6 @@ import axios from 'axios'
 import usePickedList from './Hooks/usePickedList'
 
 function Home() {
-  const [count, setCount] = useState()
-
   const [url, setUrl] = useState("")
 
   const [list, setList] = useState([])

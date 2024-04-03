@@ -7,9 +7,13 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import CONSTANTES from '../../Utils/constants';
+import PropTypes from 'prop-types';
 
-export default function ButtonAppBar() {
+export default function ButtonAppBar({
+  children
+}) {
   return (
+    <>
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{borderRadius: CONSTANTES.BORDER_RADIUS, background: CONSTANTES.HEADER_BACKGROUND_COLOR}}>
         <Toolbar >
@@ -29,5 +33,11 @@ export default function ButtonAppBar() {
         </Toolbar>
       </AppBar>
     </Box>
+    {children}
+    </>
   );
+}
+
+ButtonAppBar.propTypes = {
+  children: PropTypes.node,
 }

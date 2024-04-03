@@ -6,6 +6,7 @@ import Container from "@mui/material/Container";
 import CONSTANTES from "../../Utils/constants";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import Grid from "@mui/material/Grid";
+import PropTypes from 'prop-types';
 
 export default function Footer({ children }) {
   return (
