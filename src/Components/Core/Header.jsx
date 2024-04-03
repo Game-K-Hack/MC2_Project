@@ -22,11 +22,11 @@ export default function ButtonAppBar({
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{ mr: 2, background: CONSTANTES.BUTTON_BACKGROUND_COLOR}}
+            sx={{ mr: 2, background: CONSTANTES.BUTTON_BACKGROUND_COLOR }}
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontFamily: "LeoRoundedBold" }}>
             {CONSTANTES.NAME_APP}
           </Typography>
           <Button color="inherit">Statistiques</Button>
