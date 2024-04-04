@@ -8,7 +8,7 @@ import usePickedList from './Hooks/usePickedList'
 import target from './assets/target40.png'
 
 function Home() {
-  const [url, setUrl] = useState("translateZ(-25px) rotateX(-720deg)")
+  const [url, setUrl] = useState("")
 
   const [list, setList] = useState([])
   const [openScore, setOpenScore] = useState(false);
@@ -34,7 +34,7 @@ function Home() {
       setTimeout(() => {document.getElementById(id).style.transition = "transform 1s ease .1s";}, 50);
     }, 1100);
 
-    setTimeout(() => {setUrl(theme)}, 50);
+    setTimeout(() => {setUrl(theme)}, 30);
   }
 
   const handleStop = () => {

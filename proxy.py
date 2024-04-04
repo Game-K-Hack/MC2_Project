@@ -3,11 +3,25 @@ import requests
 
 app = Flask(__name__)
 
+def id2url(base:str, id_:str) -> str:
+    url = "https://tiermaker.com/images"
+    print(base, id_)
+    if "/" not in base:
+        print("if")
+        url += f"/chart/chart/{base}/{id_}"
+    else:
+        print("else")
+        url += f"/{base}/{id_}"
+    print(url)
+    url =  url.replace("\\/", "/")
+    print(url, end="\n")
+    return url
+
 @app.route('/proxy', methods=['GET'])
 def proxy():
-    url = request.args.get('url')  # Récupère l'URL à laquelle effectuer la requête depuis les paramètres de la requête
+    url = request.args.get('url')
     if not url:
-        return jsonify({'error': 'URL manquante'}), 400  # Si l'URL est absente, retourne une erreur
+        return jsonify({'error': 'URL manquante'}), 400
     try:
         response = requests.get(
             url + "&" + "&".join([key + "=" + request.args[key] for key in request.args.keys() if key != "url"]), 
@@ -25,15 +39,12 @@ def proxy():
             'Access-Control-Allow-Headers': 'Origin, Content-Type, Accept',
         }
 
-
-        print(response.text)
-
         data = eval(response.content.decode("utf8"))
-        content = [{"id":i+1, "url": f"https://tiermaker.com/images/chart/chart/{data[0]}/{v}"} for i, v in enumerate(data[1:])]
+        content = [{"id":i+1, "url": id2url(data[0], v)} for i, v in enumerate(data[1:])]
 
         return jsonify({'content': content}), 200, response_headers
     except requests.exceptions.RequestException as e:
-        return jsonify({'error': str(e)}), 500  # En cas d'erreur lors de la requête, retourne une erreur interne du serveur
+        return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(host='localhost', port=5432)  # Démarre le serveur Flask sur le port 5000
+    app.run(host='localhost', port=5432)

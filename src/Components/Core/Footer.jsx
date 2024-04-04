@@ -16,9 +16,6 @@ import PropTypes from "prop-types";
 
 
 
-
-
-
 export default function Footer({ children }) {
   const [open, setOpen] = useState(false);
   const [dialogTitle, setDialogTitle] = useState('');
