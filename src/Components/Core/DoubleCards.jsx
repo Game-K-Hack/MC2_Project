@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { Card, CardContent, styled } from '@mui/material';
 import Constants from '../../Utils/constants';
+import { useEffect } from 'react';
 
 const StyledCard = styled(Card)({
     backgroundColor: Constants.CARD_BACKGROUND_COLOR,
@@ -17,11 +18,11 @@ const DoubleCards = ({
     picked = [],
     list,
     setList,
+    onStop,
 }) => {
 
 
     const handleClick = (item, index) => {
-        console.log("prefered", item);
         const card = document.getElementById(`card-${item.id}`);
         if (card) {
             card.style.transition = 'transform 1s ease'; 
@@ -34,19 +35,22 @@ const DoubleCards = ({
             notSelectedCard.style.transform = "translateY(2000px)";
         }
         setList(list.filter((item) => item.id !== notSelectedItem[0].id));
-        console.log(list);
         setTimeout(() => {
             card.style.transition = 'transform 0.5s ease';
             card.style.transform = 'none';
-            notSelectedCard.style.transition = 'test 0.5s ease';
-            notSelectedCard.style.test = index !== 0 ? "translateX(2000px)" : "translateX(-2000px)";
-            notSelectedCard.style.transform = index !== 0 ? "translateY(2000px)" : "translateY(-2000px)";
+            notSelectedCard.style.transition = 'transform 0.5s ease';
             notSelectedCard.style.transform = "none"
         }, 500);
     }
 
+    useEffect(() => {
+        if (list.length <= 3) {
+            onStop();
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [list]);
 
-    console.log(picked);
+
     return (
         <div
             style={{
@@ -97,6 +101,7 @@ DoubleCards.propTypes = {
     picked: PropTypes.array,
     list: PropTypes.array,
     setList: PropTypes.func,
+    onStop: PropTypes.func,
 }
 
 export default DoubleCards

@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import './home.css'
 import DoubleCards from './Components/Core/DoubleCards'
 import { Button, Typography } from '@mui/material'
@@ -11,6 +11,7 @@ function Home() {
   const [url, setUrl] = useState("translateZ(-25px) rotateX(-720deg)")
 
   const [list, setList] = useState([])
+  const [openScore, setOpenScore] = useState(false);
 
   const picked = usePickedList(list)
 
@@ -36,9 +37,19 @@ function Home() {
     setTimeout(() => {setUrl(theme)}, 50);
   }
 
-  if (url !== "" && picked.length === 2) {
-    return <DoubleCards picked={picked} setList={setList} list={list}/>
+  const handleStop = () => {
+    setUrl("");
+    setOpenScore(true);
   }
+
+  if (url !== "" && picked.length === 2) {
+    return <DoubleCards picked={picked} setList={setList} list={list} onStop={handleStop}/>
+  }
+
+  if (openScore) {
+    return <>FIN</>
+  }
+
 
   return (
     <>
