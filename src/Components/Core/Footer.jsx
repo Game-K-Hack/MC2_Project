@@ -12,9 +12,7 @@ import { useState } from "react";
 import { DialogActions } from "@mui/material";
 import Button from "@mui/material/Button";
 import DialogContentText from "@mui/material/DialogContentText";
-
-
-
+import PropTypes from 'prop-types';
 
 
 
