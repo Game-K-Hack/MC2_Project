@@ -25,6 +25,9 @@ def proxy():
             'Access-Control-Allow-Headers': 'Origin, Content-Type, Accept',
         }
 
+
+        print(response.text)
+
         data = eval(response.content.decode("utf8"))
         content = [{"id":i+1, "url": f"https://tiermaker.com/images/chart/chart/{data[0]}/{v}"} for i, v in enumerate(data[1:])]
 

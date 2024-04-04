@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import './home.css'
-import logo from './assets/theme.png'
 import DoubleCards from './Components/Core/DoubleCards'
 import { Button, Typography } from '@mui/material'
 import Constants from './Utils/constants'
@@ -17,20 +16,21 @@ function Home() {
   useEffect(() => {
     const getList = async () => {
       const response = await axios.get("http://127.0.0.1:5432/proxy?url=" + url);
-      console.log("OKKKKKKK!")
       setList(response.data.content)
     }
-    if (url != "") {
+    if (url !== "") {
       getList();
     }
   }, [url])
 
   const handleClick = (theme) => setUrl(theme)
 
+  if (url !== "" && picked.length === 2) {
+    return <DoubleCards picked={picked} setList={setList} list={list}/>
+  }
+
   return (
     <>
-      <DoubleCards picked={picked}/>
-
       <Typography variant='h2' sx={{
         color: "white",
         fontSize: "4em"

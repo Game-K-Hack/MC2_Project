@@ -1,4 +1,3 @@
-import React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
@@ -12,7 +11,7 @@ export default function Footer({ children }) {
   return (
     <>
       {children}
-      <Box sx={{ background: CONSTANTES.HEADER_BACKGROUND_COLOR, bottom: 0,position: 'fixed', width: '1280px',  color: "white", borderTopLeftRadius: CONSTANTES.BORDER_RADIUS,borderTopRightRadius: CONSTANTES.BORDER_RADIUS, mt: 'auto', mt:'auto', height: '80px' }}>
+      <Box sx={{ background: CONSTANTES.HEADER_BACKGROUND_COLOR, bottom: 0,position: 'fixed', width: '1280px',  color: "white", borderTopLeftRadius: CONSTANTES.BORDER_RADIUS,borderTopRightRadius: CONSTANTES.BORDER_RADIUS, mt: 'auto', height: '80px' }}>
         <Container maxWidth="sm">
         <Grid container  alignItems="flex-start" justifyContent="space-between" >
             <Grid >
@@ -34,4 +33,8 @@ export default function Footer({ children }) {
       
     </>
   );
+}
+
+Footer.propTypes = {
+  children: PropTypes.node,
 }
