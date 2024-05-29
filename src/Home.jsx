@@ -7,6 +7,17 @@ import axios from 'axios'
 import usePickedList from './Hooks/usePickedList'
 import target from './assets/target40.png'
 
+function id2url(base, id_) {
+  let url = "https://tiermaker.com/images";
+  if (!base.includes("/")) {
+    url += `/chart/chart/${base}/${id_}`;
+  } else {
+    url += `/${base}/${id_}`;
+  }
+  url = url.replace(/\\\//g, "/");
+  return url;
+}
+
 function Home() {
   const [url, setUrl] = useState("")
 
@@ -15,26 +26,24 @@ function Home() {
 
   const picked = usePickedList(list)
 
-  useEffect(() => {
-    const getList = async () => {
-      const response = await axios.get("http://127.0.0.1:5432/proxy?url=" + url);
-      setList(response.data.content)
-    }
-    if (url !== "") {
-      getList();
-    }
-  }, [url])
-
   const handleClick = (theme, id) => {
     document.getElementById(id).style.transform = "translateZ(-25px) rotateX(-720deg)";
-    
+
     setTimeout(() => { // reset animation after 1.1s
       document.getElementById(id).style.transition = "transform 0s";
       document.getElementById(id).style.transform = "translateZ(-25px) rotateX(0deg)";
-      setTimeout(() => {document.getElementById(id).style.transition = "transform 1s ease .1s";}, 50);
+      setTimeout(() => { document.getElementById(id).style.transition = "transform 1s ease .1s"; }, 50);
     }, 1100);
 
-    setTimeout(() => {setUrl(theme)}, 30);
+    setTimeout(() => {
+      const content = theme.images.slice(1).map((v, i) => {
+        return {
+          id: i + 1,
+          url: id2url(theme.images[0], v)
+        };
+      });
+      setList(content)
+    }, 30);
   }
 
   const handleStop = () => {
@@ -42,8 +51,8 @@ function Home() {
     setOpenScore(true);
   }
 
-  if (url !== "" && picked.length === 2) {
-    return <DoubleCards picked={picked} setList={setList} list={list} onStop={handleStop}/>
+  if (list !== "" && picked.length === 2) {
+    return <DoubleCards picked={picked} setList={setList} list={list} onStop={handleStop} />
   }
 
   if (openScore) {
@@ -55,7 +64,7 @@ function Home() {
     <>
       <Typography variant='h2' sx={{
         color: "white",
-        fontSize: "4em", 
+        fontSize: "4em",
         marginTop: "50px",
         fontFamily: "LeoRoundedBold"
       }}>choisisser un theme</Typography>
@@ -75,7 +84,7 @@ function Home() {
                   cursor: "url(" + target + ") 20 20, auto"
                 }
               }} onClick={() => {
-                handleClick(item.url, index)
+                handleClick(item, index)
               }}>
               {item.name} <i><b style={{ marginLeft: 15 }}>{item.length}</b></i>
             </Button>
