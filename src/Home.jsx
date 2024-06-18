@@ -6,6 +6,7 @@ import Constants from './Utils/constants'
 import axios from 'axios'
 import usePickedList from './Hooks/usePickedList'
 import target from './assets/target40.png'
+import Podium from './Components/Core/podium'
 
 function id2url(base, id_) {
   let url = "https://tiermaker.com/images";
@@ -22,6 +23,7 @@ function Home() {
   const [url, setUrl] = useState("")
 
   const [list, setList] = useState([])
+  const [top3, setTop3] = useState([])
   const [openScore, setOpenScore] = useState(false);
 
   const picked = usePickedList(list)
@@ -50,13 +52,22 @@ function Home() {
     setUrl("");
     setOpenScore(true);
   }
-
+  useEffect(() => {
+    if(list.length === 3 ) {
+      setTop3(list);
+    }
+  }, [list]);
+  
   if (list !== "" && picked.length === 2) {
     return <DoubleCards picked={picked} setList={setList} list={list} onStop={handleStop} />
   }
 
+
+
   if (openScore) {
-    return <>FIN</>
+    return (
+      <Podium list={top3} />
+    )
   }
 
 

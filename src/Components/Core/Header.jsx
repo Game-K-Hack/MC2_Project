@@ -45,7 +45,6 @@ export default function ButtonAppBar({
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem onClick={handleClose}><Link to="/statistiques">Statistiques</Link></MenuItem>
           </Menu>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontFamily: "LeoRoundedBold" }}>
             {CONSTANTES.NAME_APP}
